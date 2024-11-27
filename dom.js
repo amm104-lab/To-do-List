@@ -53,7 +53,8 @@ function createToDoDialog(){
 
     const titleFormLabel = document.createElement("label");
     titleFormLabel.setAttribute("for", "titleForm");
-    titleFormLabel.textContent = "hi";
+    titleFormLabel.textContent = "Title";
+    form.appendChild(titleFormLabel);
 
     const titleForm = document.createElement("input");
     titleForm.setAttribute("type", "text");
@@ -64,7 +65,8 @@ function createToDoDialog(){
 
     const descFormLabel = document.createElement("label");
     descFormLabel.setAttribute("for", "descForm");
-    descFormLabel.textContent = "hi";
+    descFormLabel.textContent = "Description";
+    form.appendChild(descFormLabel);
 
     const descForm = document.createElement("input");
     descForm.setAttribute("type", "text");
@@ -75,7 +77,8 @@ function createToDoDialog(){
 
     const dateFormLabel = document.createElement("label");
     dateFormLabel.setAttribute("for", "dateForm");
-    dateFormLabel.textContent = "hi";
+    dateFormLabel.textContent = "Due Date";
+    form.appendChild(dateFormLabel);
 
     const dateForm = document.createElement("input");
     dateForm.setAttribute("type", "text");
@@ -86,7 +89,8 @@ function createToDoDialog(){
 
     const priorityFormLabel = document.createElement("label");
     priorityFormLabel.setAttribute("for", "priorityForm");
-    priorityFormLabel.textContent = "hi";
+    priorityFormLabel.textContent = "Priority";
+    form.appendChild(priorityFormLabel);
 
     const priorityForm = document.createElement("input");
     priorityForm.setAttribute("type", "text");
@@ -97,7 +101,8 @@ function createToDoDialog(){
 
     const notesFormLabel = document.createElement("label");
     notesFormLabel.setAttribute("for", "notesForm");
-    notesFormLabel.textContent = "hi";
+    notesFormLabel.textContent = "Notes";
+    form.appendChild(notesFormLabel);
 
     const notesForm = document.createElement("input");
     notesForm.setAttribute("type", "text");
