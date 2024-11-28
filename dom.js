@@ -1,22 +1,30 @@
 import {greeting, projectList, createProject, createToDo} from "./jv.js";
 console.log(greeting);
 
-const body = document.querySelector("body");
 
+const projectDiv = document.querySelector("div");
+const submitBtn = document.querySelector(".submit");
+const cancelBtn = document.querySelector(".cancel");
 const showBtn = document.querySelector(".show");
+const createProjectBtn = document.querySelector(".project");
+const createToDoBtn = document.querySelector(".todo");
+const titleForm = document.querySelector(".titleForm");
+const descForm = document.querySelector(".descForm");
+const dateForm = document.querySelector(".dateForm");
+const priorityForm = document.querySelector(".priorityForm");
+const notesForm = document.querySelector(".notesForm");
+
 showBtn.addEventListener("click", () => {
     console.log(projectList);
     createToDoDialog();
 })
 
-const createProjectBtn = document.querySelector(".project");
 createProjectBtn.addEventListener("click", () => {
     const trial = createProject("Trial");
     projectList.push(trial);
     updateDisplay();
 })
 
-const createToDoBtn = document.querySelector(".todo");
 createToDoBtn.addEventListener("click", () => {
     createToDoDialog();
     // projectList[0].todo = createToDo(
@@ -27,14 +35,26 @@ createToDoBtn.addEventListener("click", () => {
     //     "i just really wanna say hi");
 })
 
+
 function updateDisplay() {
+    deleteChildren("div");
     for(let i = 0; i < projectList.length; i++){
         let project = document.createElement("div");
         project.setAttribute("class", "project");
         project.setAttribute("data-index", `${i}`);
         project.textContent = projectList[i].name;
-        body.appendChild(project);
+        projectDiv.appendChild(project);
 
+    }
+}
+
+function deleteChildren(parent){
+    let e = document.querySelector(`${parent}`);
+    let child = e.lastElementChild;
+
+    while (child) {
+        e.removeChild(child);
+        child = e.lastElementChild;
     }
 }
 
@@ -52,7 +72,7 @@ function createToDoDialog(){
 
 
     const titleFormLabel = document.createElement("label");
-    titleFormLabel.setAttribute("for", "titleForm");
+    titleFormLabel.setAttribute("for", "titleFormLabel");
     titleFormLabel.textContent = "Title";
     form.appendChild(titleFormLabel);
 
@@ -124,4 +144,10 @@ function createToDoDialog(){
 
 
     dialog.showModal();
+
+    submitBtn.addEventListener("click", () => {
+        const newBook = createToDo(titleForm.value,descForm.value,dateForm.value,priorityForm.value,notesForm.value);
+        deleteChildren(".project")
+    })
+
 }
