@@ -17,8 +17,8 @@ function createProject(projectName){
     return {name};
 }
 
-function addToDoToProject(projectIndex, newToDo){
-    projectList[projectIndex].toDo = newToDo;
+function addToDoToProject(projectIndex, newToDo, newToDoTitle){
+    projectList[projectIndex][newToDoTitle] = newToDo;
     console.log("pushed to project " + projectIndex);
 }
 

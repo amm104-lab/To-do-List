@@ -3,16 +3,9 @@ console.log(greeting);
 
 
 const projectDiv = document.querySelector("div");
-const submitBtn = document.querySelector(".submit");
-const cancelBtn = document.querySelector(".cancel");
 const showBtn = document.querySelector(".show");
 const createProjectBtn = document.querySelector(".project");
 const createToDoBtn = document.querySelector(".todo");
-const titleForm = document.querySelector(".titleForm");
-const descForm = document.querySelector(".descForm");
-const dateForm = document.querySelector(".dateForm");
-const priorityForm = document.querySelector(".priorityForm");
-const notesForm = document.querySelector(".notesForm");
 
 
 showBtn.addEventListener("click", () => {
@@ -38,13 +31,48 @@ createToDoBtn.addEventListener("click", () => {
 
 function updateDisplay() {
     deleteChildren("div");
+    console.log("children deleted")
     for(let i = 0; i < projectList.length; i++){
+        console.log("first loop started")
         let project = document.createElement("div");
         project.setAttribute("class", "project");
         project.setAttribute("data-index", `${i}`);
         project.textContent = projectList[i].name;
         projectDiv.appendChild(project);
+        console.log("project made")
 
+        for(let Project in Object.keys(projectList)){
+            console.log("second loop started")
+            console.log(Project)
+            for(let todo in projectList[project]){
+                console.log("third loop started")
+                console.log(todo)
+                for(let key in projectList[project][todo]){
+                    console.log("fourth loop started")
+                    console.log(key)
+                    let toDo = document.createElement("div");
+                    toDo.setAttribute("class", "toDo");
+                    toDo.textContent = addContent(i, key, "help");
+                    project.appendChild(toDo);
+                    console.log(key);
+                    console.log(todo);
+            }
+        }}
+    }
+}
+
+function addContent(i, key, stuff){
+    switch (key){
+        case "title":
+            return `Title: ${stuff}`
+        case "desc":
+            return `Description: ${projectList[i].toDo.desc}`
+        case "date":
+            return `Due Date: ${projectList[i].toDo.date}`
+        case "priority":
+            return `Priority: ${projectList[i].toDo.priority}`
+        case "notes":
+            return `Notes: ${projectList[i].toDo.notes}`
     }
 }
 
@@ -137,18 +165,19 @@ function createToDoDialog(){
     form.appendChild(cancelBtn);
 
     const submitBtn = document.createElement("button");
-    submitBtn.setAttribute("type","reset");
     submitBtn.setAttribute("class", "submit");
     submitBtn.textContent = "Submit";
     form.appendChild(submitBtn);
 
+
     dialog.showModal();
 
     submitBtn.addEventListener("click", () => {
-        const newToDo = createToDo(titleForm.value,descForm.value,dateForm.value,priorityForm.value,notesForm.value);
+        const newToDo = createToDo(titleForm.value, descForm.value, dateForm.value, priorityForm.value, notesForm.value);
         deleteChildren(".project")
         console.log(newToDo);
-        addToDoToProject(0, newToDo);
+        addToDoToProject(0, newToDo, `${titleForm.value}`);
+        updateDisplay();
     })
 
 }
