@@ -1,4 +1,4 @@
-import {greeting, projectList, createProject, createToDo} from "./jv.js";
+import {greeting, projectList, createProject, createToDo, addToDoToProject} from "./jv.js";
 console.log(greeting);
 
 
@@ -14,9 +14,9 @@ const dateForm = document.querySelector(".dateForm");
 const priorityForm = document.querySelector(".priorityForm");
 const notesForm = document.querySelector(".notesForm");
 
+
 showBtn.addEventListener("click", () => {
     console.log(projectList);
-    createToDoDialog();
 })
 
 createProjectBtn.addEventListener("click", () => {
@@ -142,12 +142,13 @@ function createToDoDialog(){
     submitBtn.textContent = "Submit";
     form.appendChild(submitBtn);
 
-
     dialog.showModal();
 
     submitBtn.addEventListener("click", () => {
-        const newBook = createToDo(titleForm.value,descForm.value,dateForm.value,priorityForm.value,notesForm.value);
+        const newToDo = createToDo(titleForm.value,descForm.value,dateForm.value,priorityForm.value,notesForm.value);
         deleteChildren(".project")
+        console.log(newToDo);
+        addToDoToProject(0, newToDo);
     })
 
 }

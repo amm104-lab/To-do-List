@@ -17,4 +17,9 @@ function createProject(projectName){
     return {name};
 }
 
-export {greeting, projectList, createProject, createToDo};
+function addToDoToProject(projectIndex, newToDo){
+    projectList[projectIndex].toDo = newToDo;
+    console.log("pushed to project " + projectIndex);
+}
+
+export {greeting, projectList, createProject, createToDo, addToDoToProject};
