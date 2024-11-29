@@ -32,6 +32,8 @@ createToDoBtn.addEventListener("click", () => {
 function updateDisplay() {
     deleteChildren("div");
     console.log("children deleted")
+
+
     for(let i = 0; i < projectList.length; i++){
         console.log("first loop started")
         let project = document.createElement("div");
@@ -39,9 +41,11 @@ function updateDisplay() {
         project.setAttribute("data-index", `${i}`);
         project.textContent = projectList[i].name;
         projectDiv.appendChild(project);
-        console.log("project made")
+        console.log("project made");
 
-        for(let Project in Object.keys(projectList)){
+        
+
+        /*for(let Project in Object.keys(projectList)){
             console.log("second loop started")
             console.log(Project)
             for(let todo in projectList[project]){
@@ -57,7 +61,7 @@ function updateDisplay() {
                     console.log(key);
                     console.log(todo);
             }
-        }}
+        }}*/
     }
 }
 
