@@ -31,19 +31,21 @@ createToDoBtn.addEventListener("click", () => {
 
 function updateDisplay() {
     deleteChildren("div");
-    console.log("children deleted")
-
 
     for(let i = 0; i < projectList.length; i++){
-        console.log("first loop started")
         let project = document.createElement("div");
         project.setAttribute("class", "project");
         project.setAttribute("data-index", `${i}`);
         project.textContent = projectList[i].name;
         projectDiv.appendChild(project);
-        console.log("project made");
 
-        
+        for(let todo of Object.keys(projectList[i])){
+            let toDo = document.createElement("div");
+            toDo.setAttribute("class", "toDiv");
+
+            toDo.textContent = `${todo}`;
+            project.appendChild(toDo);
+        }
 
         /*for(let Project in Object.keys(projectList)){
             console.log("second loop started")
@@ -65,19 +67,26 @@ function updateDisplay() {
     }
 }
 
-function addContent(i, key, stuff){
-    switch (key){
-        case "title":
-            return `Title: ${stuff}`
-        case "desc":
-            return `Description: ${projectList[i].toDo.desc}`
-        case "date":
-            return `Due Date: ${projectList[i].toDo.date}`
-        case "priority":
-            return `Priority: ${projectList[i].toDo.priority}`
-        case "notes":
-            return `Notes: ${projectList[i].toDo.notes}`
+function addContent(todo){
+    let content = "";
+    for(let key of Object.keys([todo])){
+        content += todo;
+        console.log(key)
     }
+    return content;
+
+    // switch (key){
+    //     case "title":
+    //         return `Title: ${stuff}`
+    //     case "desc":
+    //         return `Description: ${projectList[i].toDo.desc}`
+    //     case "date":
+    //         return `Due Date: ${projectList[i].toDo.date}`
+    //     case "priority":
+    //         return `Priority: ${projectList[i].toDo.priority}`
+    //     case "notes":
+    //         return `Notes: ${projectList[i].toDo.notes}`
+    // }
 }
 
 function deleteChildren(parent){
