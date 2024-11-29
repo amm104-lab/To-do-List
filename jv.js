@@ -14,12 +14,20 @@ const projectList = [];
 
 function createProject(projectName){
     const name = projectName;
-    return {name};
+    const toDo = [];
+    // const addToDoToProject = (projectIndex, newToDo) => { .toDo.push(newToDo)
+    //     console.log("pushed to project " + projectIndex);}
+    return {
+        name,
+        // addToDoToProject
+    };
 }
 
-function addToDoToProject(projectIndex, newToDo, newToDoTitle){
-    projectList[projectIndex][newToDoTitle] = newToDo;
-    console.log("pushed to project " + projectIndex);
-}
 
-export {greeting, projectList, createProject, createToDo, addToDoToProject};
+
+export {
+    greeting,
+    projectList,
+    createProject,
+    createToDo
+};
