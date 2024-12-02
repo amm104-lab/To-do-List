@@ -20,8 +20,9 @@ showBtn.addEventListener("click", () => {
 })
 
 createProjectBtn.addEventListener("click", () => {
-    const trial = createProject("Trial");
-    projectList.push(trial);
+    // const trial = createProject("Trial");
+    // projectList.push(trial);
+    createProjectDialog();
     updateDisplay();
 })
 
@@ -82,10 +83,11 @@ function updateDisplay() {
 
 function addContent(i, j){
     return `Title: ${projectList[i].toDo[j].title} 
-                          Description: ${projectList[i].toDo[j].desc}
-                          Due Date: ${projectList[i].toDo[j].date}
-                          Priority: ${projectList[i].toDo[j].priority}
-                          Notes: ${projectList[i].toDo[j].notes}`;
+            Description: ${projectList[i].toDo[j].desc}
+            Due Date: ${projectList[i].toDo[j].date}
+            Priority: ${projectList[i].toDo[j].priority}
+            Notes: ${projectList[i].toDo[j].notes}
+            `;
     // for(let key of Object.keys(projectList[i].toDo)){
     //     switch (key){
     //         case "title":
@@ -114,14 +116,14 @@ function deleteChildren(parent){
 
 function createToDoDialog(){
 
-    const dialog = document.createElement("dialog");
-    dialog.classList.add("newToDo");
+    const dialogToDo = document.createElement("dialog");
+    dialogToDo.classList.add("newToDo");
     let project = document.querySelector(".project");
-    project.appendChild(dialog);
+    project.appendChild(dialogToDo);
 
     const form = document.createElement("form");
-    form.setAttribute("method", "dialog");
-    dialog.appendChild(form);
+    form.setAttribute("method", "dialogToDo");
+    dialogToDo.appendChild(form);
 
 
 
@@ -196,12 +198,57 @@ function createToDoDialog(){
     form.appendChild(submitBtn);
 
 
-    dialog.showModal();
+    dialogToDo.showModal();
 
     submitBtn.addEventListener("click", () => {
         const newToDo = createToDo(titleForm.value, descForm.value, dateForm.value, priorityForm.value, notesForm.value);
         deleteChildren(".project")
         projectList[0].addToDoToProject(newToDo);
+        updateDisplay();
+    })
+
+}
+
+function createProjectDialog(){
+    const dialogProject = document.createElement("dialog");
+    dialogProject.classList.add("newToDo");
+    let project = document.querySelector(".project");
+    project.appendChild(dialogProject);
+
+    const formProject = document.createElement("form");
+    formProject.setAttribute("method", "dialogProject");
+    dialogProject.appendChild(formProject);
+
+
+    const titleProjectFormLabel = document.createElement("label");
+    titleProjectFormLabel.setAttribute("for", "titleProjectFormLabel");
+    titleProjectFormLabel.textContent = "Project Title";
+    formProject.appendChild(titleProjectFormLabel);
+
+    const titleProjectForm = document.createElement("input");
+    titleProjectForm.setAttribute("type", "text");
+    titleProjectForm.setAttribute("class", "titleProjectForm");
+    titleProjectForm.setAttribute("name", "titleProjectForm");
+    formProject.appendChild(titleProjectForm);
+
+    const cancelProjectBtn = document.createElement("button");
+    cancelProjectBtn.setAttribute("type","reset");
+    cancelProjectBtn.setAttribute("class", "cancel");
+    cancelProjectBtn.textContent = "Clear all";
+    formProject.appendChild(cancelProjectBtn);
+
+    const submitProjectBtn = document.createElement("button");
+    submitProjectBtn.setAttribute("class", "submit");
+    submitProjectBtn.textContent = "Submit";
+    formProject.appendChild(submitProjectBtn);
+
+
+    dialogProject.showModal();
+
+    submitProjectBtn.addEventListener("click", () => {
+        deleteChildren(".project");
+        const newProject = createProject(titleProjectForm.value);
+        projectList.push(newProject);
         updateDisplay();
     })
 

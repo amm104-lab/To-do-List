@@ -10,3 +10,7 @@ dialog{
 input{
     margin: 5px;
 }
+
+.toDiv{
+    white-space: pre-line;
+}
