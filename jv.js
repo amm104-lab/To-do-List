@@ -17,9 +17,13 @@ function createProject(projectName){
     const toDo = [];
     // const addToDoToProject = (projectIndex, newToDo) => { .toDo.push(newToDo)
     //     console.log("pushed to project " + projectIndex);}
+    const addToDoToProject = (newToDo) => {
+        toDo.push(newToDo);
+    }
     return {
         name,
-        // addToDoToProject
+        toDo,
+        addToDoToProject
     };
 }
 

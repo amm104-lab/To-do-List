@@ -46,14 +46,20 @@ function updateDisplay() {
         project.textContent = projectList[i].name;
         projectDiv.appendChild(project);
 
-        for(let todo of Object.keys(projectList[i])){
-            let toDo = document.createElement("div");
-            toDo.setAttribute("class", "toDiv");
+        for(let j = 0; j < projectList[i].toDo.length; j++){
 
-            toDo.textContent = `${todo}`;
-            project.appendChild(toDo);
-        }
-
+                let toDo = document.createElement("div");
+                toDo.setAttribute("class", "toDiv");
+                toDo.textContent = `${addContent(i, j)}`;
+                project.appendChild(toDo);
+            }
+        // for(let todo of Object.keys(projectList[i])){
+        //     console.log(todo);
+        //
+        //
+        //     // toDo.textContent = `${todo}`;
+        //     // project.appendChild(toDo);
+        // }
         /*for(let Project in Object.keys(projectList)){
             console.log("second loop started")
             console.log(Project)
@@ -74,25 +80,25 @@ function updateDisplay() {
     }
 }
 
-function addContent(todo){
-    let content = "";
-    for(let key of Object.keys([todo])){
-        content += todo;
-        console.log(key)
-    }
-    return content;
-
-    // switch (key){
-    //     case "title":
-    //         return `Title: ${stuff}`
-    //     case "desc":
-    //         return `Description: ${projectList[i].toDo.desc}`
-    //     case "date":
-    //         return `Due Date: ${projectList[i].toDo.date}`
-    //     case "priority":
-    //         return `Priority: ${projectList[i].toDo.priority}`
-    //     case "notes":
-    //         return `Notes: ${projectList[i].toDo.notes}`
+function addContent(i, j){
+    return `Title: ${projectList[i].toDo[j].title} 
+                          Description: ${projectList[i].toDo[j].desc}
+                          Due Date: ${projectList[i].toDo[j].date}
+                          Priority: ${projectList[i].toDo[j].priority}
+                          Notes: ${projectList[i].toDo[j].notes}`;
+    // for(let key of Object.keys(projectList[i].toDo)){
+    //     switch (key){
+    //         case "title":
+    //             return `Title: ${projectList[i].toDo.title}`
+    //         case "desc":
+    //             return `Description: ${projectList[i].toDo.desc}`
+    //         case "date":
+    //             return `Due Date: ${projectList[i].toDo.date}`
+    //         case "priority":
+    //             return `Priority: ${projectList[i].toDo.priority}`
+    //         case "notes":
+    //             return `Notes: ${projectList[i].toDo.notes}`
+    //     }
     // }
 }
 
@@ -195,8 +201,7 @@ function createToDoDialog(){
     submitBtn.addEventListener("click", () => {
         const newToDo = createToDo(titleForm.value, descForm.value, dateForm.value, priorityForm.value, notesForm.value);
         deleteChildren(".project")
-        console.log(newToDo);
-        addToDoToProject(0, newToDo, `${titleForm.value}`);
+        projectList[0].addToDoToProject(newToDo);
         updateDisplay();
     })
 
