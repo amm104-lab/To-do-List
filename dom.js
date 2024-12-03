@@ -1,12 +1,8 @@
 import {
-    greeting,
     projectList,
     createProject,
     createToDo,
-    // addToDoToProject
 } from "./jv.js";
-
-console.log(greeting);
 
 
 const projectDiv = document.querySelector("div");
@@ -16,24 +12,15 @@ const createToDoBtn = document.querySelector(".todo");
 
 
 showBtn.addEventListener("click", () => {
-    console.log(projectList);
 })
 
 createProjectBtn.addEventListener("click", () => {
-    // const trial = createProject("Trial");
-    // projectList.push(trial);
     createProjectDialog();
     updateDisplay();
 })
 
 createToDoBtn.addEventListener("click", () => {
     createToDoDialog();
-    // projectList[0].todo = createToDo(
-    //     "say Hi",
-    //     "i wanna say hi",
-    //     "today",
-    //     "high",
-    //     "i just really wanna say hi");
 })
 
 
@@ -54,30 +41,6 @@ function updateDisplay() {
                 toDo.textContent = `${addContent(i, j)}`;
                 project.appendChild(toDo);
             }
-        // for(let todo of Object.keys(projectList[i])){
-        //     console.log(todo);
-        //
-        //
-        //     // toDo.textContent = `${todo}`;
-        //     // project.appendChild(toDo);
-        // }
-        /*for(let Project in Object.keys(projectList)){
-            console.log("second loop started")
-            console.log(Project)
-            for(let todo in projectList[project]){
-                console.log("third loop started")
-                console.log(todo)
-                for(let key in projectList[project][todo]){
-                    console.log("fourth loop started")
-                    console.log(key)
-                    let toDo = document.createElement("div");
-                    toDo.setAttribute("class", "toDo");
-                    toDo.textContent = addContent(i, key, "help");
-                    project.appendChild(toDo);
-                    console.log(key);
-                    console.log(todo);
-            }
-        }}*/
     }
 }
 
@@ -88,20 +51,6 @@ function addContent(i, j){
             Priority: ${projectList[i].toDo[j].priority}
             Notes: ${projectList[i].toDo[j].notes}
             `;
-    // for(let key of Object.keys(projectList[i].toDo)){
-    //     switch (key){
-    //         case "title":
-    //             return `Title: ${projectList[i].toDo.title}`
-    //         case "desc":
-    //             return `Description: ${projectList[i].toDo.desc}`
-    //         case "date":
-    //             return `Due Date: ${projectList[i].toDo.date}`
-    //         case "priority":
-    //             return `Priority: ${projectList[i].toDo.priority}`
-    //         case "notes":
-    //             return `Notes: ${projectList[i].toDo.notes}`
-    //     }
-    // }
 }
 
 function deleteChildren(parent){
