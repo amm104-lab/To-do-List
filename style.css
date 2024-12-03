@@ -21,6 +21,8 @@ span{
     background-color: #ffffff;
     margin: 10px;
     border-radius: 8px;
+    word-break: break-word;
+    max-width: 500px;
 }
 
 div .project{

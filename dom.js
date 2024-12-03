@@ -45,10 +45,15 @@ function updateDisplay() {
 
 function addContent(i, j){
     return `Title: ${projectList[i].toDo[j].title} 
+    
             Description: ${projectList[i].toDo[j].desc}
+            
             Due Date: ${projectList[i].toDo[j].date}
+            
             Priority: ${projectList[i].toDo[j].priority}
+            
             Notes: ${projectList[i].toDo[j].notes}
+            
             `;
 }
 
