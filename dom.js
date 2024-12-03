@@ -186,6 +186,26 @@ function createToDoDialog(){
     notesForm.setAttribute("name", "notesForm");
     form.appendChild(notesForm);
 
+
+    const projectFormLabel = document.createElement("label");
+    projectFormLabel.setAttribute("for", "projectForm");
+    projectFormLabel.textContent = "Project";
+    form.appendChild(projectFormLabel);
+
+    const projectForm = document.createElement("select");
+    projectForm.setAttribute("class", "projectForm");
+    projectForm.setAttribute("name", "projectForm");
+    form.appendChild(projectForm);
+
+    for(let i = 0; i < projectList.length; i++){
+        const projectOption = document.createElement("option");
+        projectOption.setAttribute("value", `${i}`);
+        projectOption.textContent = `${projectList[i].name}`
+        projectForm.appendChild(projectOption);
+    }
+
+
+
     const cancelBtn = document.createElement("button");
     cancelBtn.setAttribute("type","reset");
     cancelBtn.setAttribute("class", "cancel");
@@ -203,7 +223,7 @@ function createToDoDialog(){
     submitBtn.addEventListener("click", () => {
         const newToDo = createToDo(titleForm.value, descForm.value, dateForm.value, priorityForm.value, notesForm.value);
         deleteChildren(".project")
-        projectList[0].addToDoToProject(newToDo);
+        projectList[projectForm.value].addToDoToProject(newToDo);
         updateDisplay();
     })
 
