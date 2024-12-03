@@ -5,14 +5,12 @@ import {
 } from "./jv.js";
 
 
+
 const projectDiv = document.querySelector("div");
-const showBtn = document.querySelector(".show");
 const createProjectBtn = document.querySelector(".project");
 const createToDoBtn = document.querySelector(".todo");
 
 
-showBtn.addEventListener("click", () => {
-})
 
 createProjectBtn.addEventListener("click", () => {
     createProjectDialog();
@@ -22,6 +20,7 @@ createProjectBtn.addEventListener("click", () => {
 createToDoBtn.addEventListener("click", () => {
     createToDoDialog();
 })
+
 
 
 function updateDisplay() {
@@ -72,6 +71,7 @@ function createToDoDialog(){
 
     const form = document.createElement("form");
     form.setAttribute("method", "dialogToDo");
+    form.setAttribute("class", "toDoForm")
     dialogToDo.appendChild(form);
 
 
@@ -186,6 +186,7 @@ function createProjectDialog(){
 
     const formProject = document.createElement("form");
     formProject.setAttribute("method", "dialogProject");
+    formProject.setAttribute("class", "projectForm");
     dialogProject.appendChild(formProject);
 
 
