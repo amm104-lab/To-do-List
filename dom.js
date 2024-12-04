@@ -33,12 +33,33 @@ function updateDisplay() {
         project.textContent = projectList[i].name;
         projectDiv.appendChild(project);
 
+        let deleteButtonProject = document.createElement("button");
+        deleteButtonProject.setAttribute("class", "deleteButtonProject");
+        deleteButtonProject.textContent = "Delete Project";
+        project.appendChild(deleteButtonProject);
+
+        deleteButtonProject.addEventListener("click", () => {
+            projectList.splice(parseInt(project.dataset.index), 1);
+            updateDisplay();
+        })
+
         for(let j = 0; j < projectList[i].toDo.length; j++){
 
                 let toDo = document.createElement("div");
                 toDo.setAttribute("class", "toDiv");
+                toDo.setAttribute("data-index", `${j}`);
                 toDo.textContent = `${addContent(i, j)}`;
                 project.appendChild(toDo);
+
+                let deleteButtonToDo = document.createElement("button");
+                deleteButtonToDo.setAttribute("class", "deleteButtonToDo");
+                deleteButtonToDo.textContent = "Delete To-Do";
+                toDo.appendChild(deleteButtonToDo);
+
+                deleteButtonToDo.addEventListener("click", () => {
+                    projectList[i].toDo.splice(parseInt(toDo.dataset.index), 1);
+                    updateDisplay();
+                })
             }
     }
 }

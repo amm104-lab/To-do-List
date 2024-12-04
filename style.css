@@ -16,6 +16,7 @@ span{
 .toDiv{
     white-space: pre-line;
     display: flex;
+    flex-direction: column;
     padding: 10px;
     border: 2px solid #2f2a28;
     background-color: #ffffff;
