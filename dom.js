@@ -2,6 +2,9 @@ import {
     projectList,
     createProject,
     createToDo,
+    editToDo,
+    addContent,
+    deleteChildren
 } from "./jv.js";
 
 
@@ -43,48 +46,34 @@ function updateDisplay() {
             updateDisplay();
         })
 
-        for(let j = 0; j < projectList[i].toDo.length; j++){
+        for(let j = 0; j < projectList[i].toDo.length; j++) {
 
-                let toDo = document.createElement("div");
-                toDo.setAttribute("class", "toDiv");
-                toDo.setAttribute("data-index", `${j}`);
-                toDo.textContent = `${addContent(i, j)}`;
-                project.appendChild(toDo);
+            let toDo = document.createElement("div");
+            toDo.setAttribute("class", "toDiv");
+            toDo.setAttribute("data-index", `${j}`);
+            toDo.textContent = `${addContent(i, j)}`;
+            project.appendChild(toDo);
 
-                let deleteButtonToDo = document.createElement("button");
-                deleteButtonToDo.setAttribute("class", "deleteButtonToDo");
-                deleteButtonToDo.textContent = "Delete To-Do";
-                toDo.appendChild(deleteButtonToDo);
+            let deleteButtonToDo = document.createElement("button");
+            deleteButtonToDo.setAttribute("class", "deleteButtonToDo");
+            deleteButtonToDo.textContent = "Delete To-Do";
+            toDo.appendChild(deleteButtonToDo);
 
-                deleteButtonToDo.addEventListener("click", () => {
-                    projectList[i].toDo.splice(parseInt(toDo.dataset.index), 1);
-                    updateDisplay();
-                })
-            }
-    }
-}
+            deleteButtonToDo.addEventListener("click", () => {
+                projectList[i].toDo.splice(parseInt(toDo.dataset.index), 1);
+                updateDisplay();
+            })
 
-function addContent(i, j){
-    return `Title: ${projectList[i].toDo[j].title} 
-    
-            Description: ${projectList[i].toDo[j].desc}
-            
-            Due Date: ${projectList[i].toDo[j].date}
-            
-            Priority: ${projectList[i].toDo[j].priority}
-            
-            Notes: ${projectList[i].toDo[j].notes}
-            
-            `;
-}
+            let editButtonToDo = document.createElement("button");
+            editButtonToDo.setAttribute("class", "editButtonToDo");
+            editButtonToDo.textContent = "Edit To-Do";
+            toDo.appendChild(editButtonToDo);
 
-function deleteChildren(parent){
-    let e = document.querySelector(`${parent}`);
-    let child = e.lastElementChild;
-
-    while (child) {
-        e.removeChild(child);
-        child = e.lastElementChild;
+            editButtonToDo.addEventListener("click", () => {
+                editToDo(i,j);
+                updateDisplay();
+            })
+        }
     }
 }
 
