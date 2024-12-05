@@ -34,7 +34,7 @@ function editToDo(i,j){
 
         case "description" :
         case "desc":
-        case"d":
+        case "d":
             let inputDesc = prompt("Please choose new Description")
             projectList[i].toDo[j].desc = inputDesc;
             break;
